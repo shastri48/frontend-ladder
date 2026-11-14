@@ -1,0 +1,276 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --bg: #f7f8fc;
+  --surface: #ffffff;
+  --surface-2: #f1f3f9;
+  --surface-3: #e7eaf3;
+  --border: #e2e6f0;
+  --text: #0f1222;
+  --muted: #5b6178;
+  --faint: #8a90a8;
+  --accent: #7c3aed;
+  --accent-2: #06b6d4;
+  --code-bg: #0f1222;
+  --shadow: 0 1px 2px rgb(15 18 34 / 0.04), 0 8px 24px -12px rgb(15 18 34 / 0.12);
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #0a0c16;
+  --surface: #121527;
+  --surface-2: #181c33;
+  --surface-3: #22274a;
+  --border: #252a48;
+  --text: #e8eaf6;
+  --muted: #a1a7c4;
+  --faint: #6f7596;
+  --accent: #a78bfa;
+  --accent-2: #22d3ee;
+  --code-bg: #0b0e1c;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -16px rgb(0 0 0 / 0.6);
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-line: var(--border);
+  --color-ink: var(--text);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  --shadow-card: var(--shadow);
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--surface-3) transparent;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.glow-bg {
+  background:
+    radial-gradient(60rem 30rem at 10% -10%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%),
+    radial-gradient(50rem 30rem at 100% 0%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 60%);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, color-mix(in srgb, var(--border) 60%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in srgb, var(--border) 60%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at top, black 20%, transparent 70%);
+}
+
+/* ---------- Lesson prose ---------- */
+.lesson-prose {
+  --tw-prose-body: var(--text);
+  --tw-prose-headings: var(--text);
+  --tw-prose-links: var(--accent);
+  --tw-prose-bold: var(--text);
+  --tw-prose-counters: var(--faint);
+  --tw-prose-bullets: var(--faint);
+  --tw-prose-hr: var(--border);
+  --tw-prose-quotes: var(--muted);
+  --tw-prose-quote-borders: var(--accent);
+  --tw-prose-code: var(--text);
+  --tw-prose-th-borders: var(--border);
+  --tw-prose-td-borders: var(--border);
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  max-width: none;
+}
+
+.lesson-prose :where(h2) {
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  margin-top: 2.6em;
+  scroll-margin-top: 5rem;
+}
+.lesson-prose :where(h3) {
+  letter-spacing: -0.01em;
+  scroll-margin-top: 5rem;
+}
+.lesson-prose :where(p, li) {
+  color: color-mix(in srgb, var(--text) 88%, var(--muted));
+}
+
+.lesson-prose :where(code):not(:where(pre *)) {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 0.4rem;
+  padding: 0.12em 0.38em;
+  font-size: 0.86em;
+  font-weight: 500;
+}
+.lesson-prose :where(code):not(:where(pre *))::before,
+.lesson-prose :where(code):not(:where(pre *))::after {
+  content: none;
+}
+
+.lesson-prose :where(pre) {
+  background: var(--code-bg) !important;
+  color: #e6e8f5;
+  border: 1px solid color-mix(in srgb, var(--border) 70%, #000);
+  border-radius: 0.9rem;
+  font-size: 0.86rem;
+  line-height: 1.65;
+  padding: 1rem 1.1rem;
+  position: relative;
+}
+.lesson-prose :where(table) {
+  display: block;
+  overflow-x: auto;
+  font-size: 0.92rem;
+}
+.lesson-prose :where(thead th) {
+  background: var(--surface-2);
+  padding: 0.6em 0.8em;
+}
+.lesson-prose :where(tbody td) {
+  padding: 0.6em 0.8em;
+}
+.lesson-prose :where(img) {
+  border-radius: 0.75rem;
+}
+.lesson-prose > :first-child {
+  margin-top: 0;
+}
+.lesson-prose.compact {
+  font-size: 1rem;
+}
+.lesson-prose.compact :where(h2) {
+  font-size: 1.25rem;
+  margin-top: 1.6em;
+}
+
+/* copy button on code blocks */
+.code-wrap {
+  position: relative;
+}
+.code-wrap .copy-btn {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.55rem;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  padding: 0.25rem 0.55rem;
+  border-radius: 0.45rem;
+  background: rgb(255 255 255 / 0.08);
+  color: #c8cbe0;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+.code-wrap:hover .copy-btn,
+.code-wrap .copy-btn:focus-visible {
+  opacity: 1;
+}
+@media (hover: none) {
+  .code-wrap .copy-btn {
+    opacity: 0.9;
+  }
+}
+.code-lang {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.9rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6f7596;
+  pointer-events: none;
+}
+.code-wrap:hover .code-lang {
+  opacity: 0;
+}
+
+/* ---------- highlight.js theme (works on dark code bg in both themes) ---------- */
+.hljs { color: #e6e8f5; background: transparent; }
+.hljs-comment, .hljs-quote { color: #6f7596; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-literal, .hljs-doctag { color: #c792ea; }
+.hljs-string, .hljs-regexp, .hljs-addition, .hljs-attribute, .hljs-meta .hljs-string { color: #a5e075; }
+.hljs-number, .hljs-symbol, .hljs-bullet { color: #f78c6c; }
+.hljs-title, .hljs-title.function_, .hljs-section { color: #82aaff; }
+.hljs-title.class_, .hljs-type, .hljs-built_in { color: #ffcb6b; }
+.hljs-attr, .hljs-variable, .hljs-template-variable, .hljs-property { color: #89ddff; }
+.hljs-name, .hljs-selector-id, .hljs-selector-class { color: #f07178; }
+.hljs-params { color: #e6e8f5; }
+.hljs-meta { color: #89ddff; }
+.hljs-deletion { color: #ff5370; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: 700; }
+
+/* ---------- animations ---------- */
+@keyframes pop-in {
+  from { transform: translateY(8px) scale(0.98); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.animate-pop { animation: pop-in 0.28s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-reveal { animation: reveal 0.25s ease-out both; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-float { animation: float 4s ease-in-out infinite; }
+
+@keyframes shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+.text-shimmer {
+  background: linear-gradient(90deg, var(--text) 0%, var(--accent) 25%, var(--accent-2) 50%, var(--text) 75%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 8s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
